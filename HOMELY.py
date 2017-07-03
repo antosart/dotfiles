@@ -2,7 +2,10 @@
 
 from homely.files import mkdir
 from homely.files import symlink
+from homely.install import installpkg
 import os
+
+installpkg('source-highlight')
 
 symlink('git/gitignore', '~/.gitignore')
 symlink('git/gitconfig', '~/.gitconfig')

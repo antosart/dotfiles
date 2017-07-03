@@ -229,3 +229,6 @@ fi
 
 # Then, source plugins and add commands to $PATH
 zplug load --verbose
+
+export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
+export LESS=' -R '
