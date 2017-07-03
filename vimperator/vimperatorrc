@@ -1,0 +1,8 @@
+"3.15.0 (created: 2016/10/05 01:11:26)
+
+nmap t <C-t>
+nmap o <C-l>
+map d <C-w>
+source! $HOME/.vimperatorrc.local
+
+" vim: set ft=vimperator:

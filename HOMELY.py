@@ -21,3 +21,4 @@ mkdir('~/.i3')
 symlink('i3/config', '~/.i3/config')
 symlink('i3/ipy3status.py', '~/.i3/ipy3status.py')
 
+symlink('vimperator/vimperatorrc', '~/.vimperatorrc')
