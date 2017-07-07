@@ -1,0 +1,7 @@
+#!/bin/bash
+#
+SINK=`pactl list sinks |grep -G 'alsa_output.*analog' -B 2 |grep Sink | cut -f 2 -d '#'`
+if [ `pactl list | grep -A 9001 "Sink #$SINK" | grep Volume | head -n 1 | awk -F / '{print $2}' | sed 's/[^0-9]*//g'` -le 197 ]
+then
+    pactl set-sink-volume $SINK +3%
+fi
