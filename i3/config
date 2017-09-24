@@ -324,6 +324,8 @@ for_window [class="spotify"] floating enable
 for_window [title="^Preferenze$"] floating enable
 for_window [title="^Preferences$"] floating enable
 for_window [instance="Calendar" class="Icedove" title="New Event"] floating enable
+for_window [instance="^xsane"] floating enable
+
 
 for_window [class="^google-chrome$"] border none
 #for_window [class="^Icedove"] border none
