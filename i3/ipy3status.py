@@ -65,6 +65,7 @@ status.register("battery",
                     "DIS": "↓",
                     "CHR": "↑",
                     "FULL": "=",
+                    "DPL": "0"
                 },)
 status.register("battery",
                 battery_ident="BAT0",
@@ -76,6 +77,7 @@ status.register("battery",
                     "DIS": "↓",
                     "CHR": "↑",
                     "FULL": "=",
+                    "DPL": "0"
                 },)
 
 # # This would look like this:
