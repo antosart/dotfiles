@@ -25,27 +25,6 @@
 (package-initialize)
 
 
-(load "~/.emacs.d/melpa")
-(load "~/.emacs.d/helm")
-
-
-(load-user-file "config-visual.el")
-(load-user-file "config-elpy.el")
-
-(load-user-file "config-javascript.el")
-(load-user-file "config-latex.el")
-
-(load-user-file "config-git.el")
-
-
-
-
-(setq sage-shell:use-prompt-toolkit t)
-
-(require 'sunrise-commander)
-
-
-
 
 ;; (custom-set-variables
 ;;  ;; custom-set-variables was added by Custom.
@@ -82,7 +61,7 @@
      (output-html "xdg-open"))))
  '(package-selected-packages
    (quote
-    (palette helm-ag sr-speedbar helm-projectile projectile markdown-mode flycheck flycheck-css-colorguard helm-flycheck web-beautify ac-helm ac-html ac-html-bootstrap ac-html-csswatcher ac-js2 tern tern-auto-complete tern-context-coloring sage-shell-mode py-autopep8 parsebib magit helm git-timemachine f evil-visual-mark-mode elpy auctex))))
+    (dtrt-indent palette helm-ag sr-speedbar helm-projectile projectile markdown-mode flycheck flycheck-css-colorguard helm-flycheck web-beautify ac-helm ac-html ac-html-bootstrap ac-html-csswatcher ac-js2 tern tern-auto-complete tern-context-coloring sage-shell-mode py-autopep8 parsebib magit helm git-timemachine f evil-visual-mark-mode elpy auctex))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -90,6 +69,27 @@
  ;; If there is more than one, they won't work right.
  )
 
+
+
+
+(load "~/.emacs.d/melpa")
+(load "~/.emacs.d/helm")
+
+
+(load-user-file "config-visual.el")
+(load-user-file "config-elpy.el")
+(load-user-file "config-cpp.el")
+(load-user-file "config-javascript.el")
+(load-user-file "config-latex.el")
+
+(load-user-file "config-git.el")
+
+
+
+
+(setq sage-shell:use-prompt-toolkit t)
+
+(require 'sunrise-commander)
 
 
 

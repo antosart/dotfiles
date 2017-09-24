@@ -44,3 +44,14 @@
 
 (require 'sr-speedbar)
 (global-set-key (kbd "s-s") 'sr-speedbar-toggle)
+
+(add-hook 'after-init-hook (lambda ()
+	  (progn
+	    (global-company-mode)
+	    (add-to-list 'company-backends 'company-web-html)
+	    (add-to-list 'company-backends 'company-web-jade)
+	    (add-to-list 'company-backends 'company-web-slim)
+	    (global-set-key (kbd "C-c C-SPC") 'company-complete))))
+
+(setq-default indent-tabs-mode nil)
+(dtrt-indent-mode)
