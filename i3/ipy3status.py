@@ -1,6 +1,6 @@
 from i3pystatus import Status
 from i3pystatus.mail import thunderbird
-from i3pystatus.format_bar import FormatBar
+#from i3pystatus.format_bar import FormatBar
 
 status = Status()
 
@@ -25,6 +25,7 @@ status.register("pulseaudio",
 
 status.register("backlight",
                 format="☀{percentage}%",
+                backlight="intel_backlight",
                 interval=10)
 
 
@@ -59,7 +60,7 @@ status.register("battery",
                 battery_ident="BAT1",
                 format="{status}[/{consumption:.1f}W] {percentage:.0f}%[ {remaining:%E%hh:%Mm}]",
                 alert=True,
-                alert_timeout=5,
+                alert_timeout=1,
                 alert_percentage=5,
                 status={
                     "DIS": "↓",
@@ -71,7 +72,7 @@ status.register("battery",
                 battery_ident="BAT0",
                 format="{status}[/{consumption:.1f}W] {percentage:.0f}%[ {remaining:%E%hh:%Mm}]",
                 alert=True,
-                alert_timeout=5,
+                alert_timeout=1,
                 alert_percentage=5,
                 status={
                     "DIS": "↓",
@@ -113,9 +114,9 @@ status.register("network",
 status.register("network",
                 interface="wlan0",
                 format_up="{essid} {quality:.0f}%",)
-status.register("net_speed",
-                format = "↓{speed_down:.1f}{down_units} ↑{speed_up:.1f}{up_units}",
-                units="B")
+# status.register("net_speed",
+#                 format = "↓{speed_down:.1f}{down_units} ↑{speed_up:.1f}{up_units}",
+#                 units="B")
 
 # Shows disk usage of /
 # Format:
