@@ -61,7 +61,7 @@
      (output-html "xdg-open"))))
  '(package-selected-packages
    (quote
-    (dtrt-indent palette helm-ag sr-speedbar helm-projectile projectile markdown-mode flycheck flycheck-css-colorguard helm-flycheck web-beautify ac-helm ac-html ac-html-bootstrap ac-html-csswatcher ac-js2 tern tern-auto-complete tern-context-coloring sage-shell-mode py-autopep8 parsebib magit helm git-timemachine f evil-visual-mark-mode elpy auctex))))
+    (tide typescript-mode helm-company helm-rtags rtags helm-gtags ggtags company-irony flycheck-irony irony dtrt-indent palette helm-ag sr-speedbar helm-projectile projectile markdown-mode flycheck flycheck-css-colorguard helm-flycheck web-beautify ac-helm ac-html ac-html-bootstrap ac-html-csswatcher ac-js2 tern tern-auto-complete tern-context-coloring sage-shell-mode py-autopep8 parsebib magit helm git-timemachine f evil-visual-mark-mode elpy auctex))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
