@@ -27,8 +27,6 @@ symlink('i3/config', '~/.i3/config')
 symlink('i3/ipy3status.py', '~/.i3/ipy3status.py')
 symlink('i3/exit_menu.sh', '~/.i3/exit_menu.sh')
 
-symlink('vimperator/vimperatorrc', '~/.vimperatorrc')
-
 mkdir('~/bin')
 for entry in os.scandir(os.environ['HOME'] + '/dotfiles/bin'):
     if entry.is_file():
