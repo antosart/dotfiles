@@ -19,6 +19,8 @@ for entry in os.scandir(os.environ['HOME'] + '/dotfiles/emacs'):
     if entry.name.startswith('config') and entry.is_file():
         symlink('emacs/' + entry.name,
                 '~/.emacs.d/' + entry.name)
+symlink('emacs/melpa', '~/.emacs.d/melpa')
+symlink('emacs/helm', '~/.emacs.d/helm')
 
 mkdir('~/.i3')
 symlink('i3/config', '~/.i3/config')
