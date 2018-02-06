@@ -204,7 +204,7 @@ workspace $WS8 output eDP1
 workspace $WS9 output eDP1
 workspace $WS0 output eDP1
 
-workspace $WSF1 output DP2
+workspace $WSF1 output HDMI1
 workspace $WSF2 output DP2
 workspace $WSF3 output DP2
 workspace $WSF4 output DP2
