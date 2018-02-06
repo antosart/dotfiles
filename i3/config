@@ -393,6 +393,7 @@ exec --no-startup-id nextcloud
 exec --no-startup-id pcmanfm -d
 exec --no-startup-id nm-applet
 exec --no-startup-id pasystray
+exec --no-startup-id tracker daemon -s
 exec --no-startup-id kupfer --no-splash
 
 exec --no-startup-id Telegram
