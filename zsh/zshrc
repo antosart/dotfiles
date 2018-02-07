@@ -108,7 +108,7 @@ i3-gui() {
 alias evince="i3-gui evince"
 
 #export FZF_DEFAULT_OPTS="--exact"
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
 ###
@@ -116,6 +116,7 @@ alias evince="i3-gui evince"
 ###
 
 source ~/.zplug/init.zsh
+
 
 # Make sure to use double quotes
 zplug "zsh-users/zsh-history-substring-search"
@@ -137,20 +138,20 @@ zplug 'nojhan/liquidprompt'
 
 # Grab binaries from GitHub Releases
 # and rename with the "rename-to:" tag
-# zplug "junegunn/fzf-bin", \
-#     from:gh-r, \
-#     as:command, \
-#     rename-to:fzf, \
-#     use:"*darwin*amd64*"
+zplug "junegunn/fzf-bin", \
+    from:gh-r, \
+    as:command, \
+    rename-to:fzf, \
+    use:"*linux*amd64*"
 
-# zplug "junegunn/fzf", \
-#       as:command, \
-#       use:"bin/fzf-tmux", \
-#       rename-to:fzf
+zplug "junegunn/fzf", \
+      as:command, \
+      use:"bin/fzf-tmux", \
+      rename-to:"fzf-tmux"
 
-# zplug "junegunn/fzf", \
-#       as:plugin, \
-#       use:"shell/*.zsh"
+zplug "junegunn/fzf", \
+      as:plugin, \
+      use:"shell/*.zsh"
 
 # Supports oh-my-zsh plugins and the like
 #zplug "plugins/git",   from:oh-my-zsh
@@ -216,9 +217,6 @@ zplug "zsh-users/zsh-syntax-highlighting", defer:2
 # Load theme file
 # zplug 'dracula/zsh', as:theme
 
-# Manage zplug
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
@@ -226,6 +224,9 @@ if ! zplug check --verbose; then
         echo; zplug install
     fi
 fi
+
+# Let zplug manage itself
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
 # Then, source plugins and add commands to $PATH
 zplug load --verbose
