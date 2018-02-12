@@ -33,4 +33,5 @@ for entry in os.scandir(os.environ['HOME'] + '/dotfiles/bin'):
         symlink('bin/' + entry.name,
                 '~/bin/' + entry.name)
 
+mkdir('~/.config/dunst')
 symlink('dunstrc', '~/.config/dunst/dunstrc')
