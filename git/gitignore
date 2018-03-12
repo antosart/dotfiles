@@ -1,3 +1,7 @@
+# -*- mode: gitignore; -*-
 .tern-port
 *~
-#*#
+\#*\#
+.projectile
+*.temp
+.dir-locals.el
