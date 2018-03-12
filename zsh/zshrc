@@ -158,6 +158,8 @@ zplug "junegunn/fzf", \
 
 zplug "plugins/emacs", from:oh-my-zsh, if:"[ ! -n \"$SSH_CLIENT\" ] && [ ! -n \"$SSH_TTY\" ]"
 
+zplug "so-fancy/diff-so-fancy", as:command
+
 # Also prezto
 #zplug "modules/prompt", from:prezto
 

@@ -3,5 +3,6 @@
 	email = antonio217@web.de
 [core]
 	excludesfile = ~/.gitignore
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [alias]
 	gr = log --graph --full-history --all --color --pretty=tformat:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m"
