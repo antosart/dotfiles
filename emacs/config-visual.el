@@ -1,8 +1,8 @@
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-message t)
 
-(add-to-list 'default-frame-alist '(font . "mono 9" ))
-(set-face-attribute 'default t :font "mono 9" )
+(add-to-list 'default-frame-alist '(font . "Hack 9" ))
+(set-face-attribute 'default t :font "Hack 9" )
 
 (tool-bar-mode -1)
 
@@ -42,26 +42,75 @@
 (global-set-key (kbd "M-<prior>") 'my-scroll-down)
 
 
-(require 'sr-speedbar)
-(global-set-key (kbd "s-s") 'sr-speedbar-toggle)
-
-(add-hook 'after-init-hook (lambda ()
-	  (progn
-	    (global-company-mode)
-	    (add-to-list 'company-backends 'company-web-html)
-	    (add-to-list 'company-backends 'company-web-jade)
-	    (add-to-list 'company-backends 'company-web-slim)
-	    (global-set-key (kbd "C-c C-SPC") 'company-complete))))
+(use-package sr-speedbar
+  :ensure t
+  :bind (("s-s" . 'sr-speedbar-toggle)))
 
 (setq-default indent-tabs-mode nil)
-(dtrt-indent-mode)
 
-(projectile-global-mode)
-(helm-projectile-on)
+(use-package dtrt-indent
+  :ensure t
+  :commands dtrt-intent-mode)
 
 
-(require 'helm-company)
-(eval-after-load 'company
-  '(progn
-     (define-key company-mode-map (kbd "C-:") 'helm-company)
-     (define-key company-active-map (kbd "C-:") 'helm-company)))
+(use-package projectile
+  :ensure t
+  :demand t
+  :config
+  (projectile-global-mode))
+
+(use-package helm-projectile
+  :ensure t
+  :demand t
+  :after (helm projectile)
+  :config (helm-projectile-on))
+
+(use-package helm-ag
+  :ensure t
+  :commands (helm-ag helm-projectile-ag)
+  :init (setq helm-ag-insert-at-point 'symbol
+              helm-ag-command-option "--path-to-agignore ~/.agignore"))
+
+(use-package helm-company
+  :ensure t
+  :after (company)
+  :config
+  (define-key company-mode-map (kbd "C-:") 'helm-company)
+  (define-key company-active-map (kbd "C-:") 'helm-company))
+
+(use-package which-key
+  :ensure t
+  :config (which-key-mode))
+
+(use-package flycheck
+  :ensure t
+  :config (global-flycheck-mode))
+
+(use-package yasnippet-snippets
+  :ensure t
+  :config (yas-global-mode))
+
+(use-package markdown-mode
+  :ensure t
+  :ensure-system-package markdown
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "markdown"))
+
+(use-package markdown-preview-mode
+  :ensure t
+  :commands (markdown-preview-mode))
+
+(use-package json-mode
+  :ensure t
+  :mode "\\.json\\'")
+
+(use-package yaml-mode
+  :ensure t
+  :mode "\\.yaml\\'")
+
+(use-package vmd-mode
+  :ensure t
+  :commands (vmd-mode))

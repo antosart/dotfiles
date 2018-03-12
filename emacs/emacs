@@ -4,6 +4,13 @@
 
 ;;; Code:
 
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (add-to-list 'load-path "~/.emacs.d/others")
 (setq backup-directory-alist `(("." . "~/.emacs-saves")))
 
@@ -22,9 +29,17 @@
   (load-file (expand-file-name file user-init-dir)))
 
 
-(package-initialize)
+(load "~/.emacs.d/melpa")
 
+(eval-when-compile
+  (require 'use-package))
 
+(use-package use-package-ensure-system-package
+  :ensure t)
+(use-package system-packages
+  :ensure t
+  :init
+  (setq system-packages-use-sudo t))
 
 ;; (custom-set-variables
 ;;  ;; custom-set-variables was added by Custom.
@@ -61,7 +76,7 @@
      (output-html "xdg-open"))))
  '(package-selected-packages
    (quote
-    (tide typescript-mode helm-company helm-rtags rtags helm-gtags ggtags company-irony flycheck-irony irony dtrt-indent palette helm-ag sr-speedbar helm-projectile projectile markdown-mode flycheck flycheck-css-colorguard helm-flycheck web-beautify ac-helm ac-html ac-html-bootstrap ac-html-csswatcher ac-js2 tern tern-auto-complete tern-context-coloring sage-shell-mode py-autopep8 parsebib magit helm git-timemachine f evil-visual-mark-mode elpy auctex))))
+    (gitignore-mode sudo-edit yas dtrt-indent-mode company-quickhelp use-package markdown-preview-mode markdown-toc vmd-mode go-guru go-dlv yasnippet-snippets which-key json-mode yaml-mode dockerfile-mode go-eldoc company-go go-mode company tide typescript-mode helm-rtags rtags helm-gtags ggtags company-irony flycheck-irony irony  dtrt-indent palette helm-ag sr-speedbar helm-projectile projectile markdown-mode flycheck flycheck-css-colorguard helm-flycheck web-beautify ac-helm ac-html ac-html-bootstrap ac-html-csswatcher ac-js2 tern tern-auto-complete tern-context-coloring sage-shell-mode py-autopep8 parsebib magit helm git-timemachine f evil-visual-mark-mode elpy auctex)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -72,9 +87,31 @@
 
 
 
-(load "~/.emacs.d/melpa")
 (load "~/.emacs.d/helm")
 
+(use-package company
+  :ensure t
+  :defer t
+  :init (global-company-mode)
+  :config
+  ;; Use Company for completion
+  (bind-key [remap completion-at-point] #'company-complete company-mode-map)
+  
+  (setq company-tooltip-align-annotations t
+        ;; Easy navigation to candidates with M-<n>
+        company-show-numbers t)
+  (setq company-tooltip-limit 20)                      ; bigger popup window
+  (setq company-idle-delay .3)                         ; decrease delay before autocompletion popup shows
+  (setq company-echo-delay 0)                          ; remove annoying blinking
+  (define-key company-active-map 'company-complete-common nil) ; disable TAB completion
+  (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
+
+  :diminish company-mode)
+
+(use-package company-quickhelp          ; Documentation popups for Company
+  :ensure t
+  :defer t
+  :init (add-hook 'global-company-mode-hook #'company-quickhelp-mode))
 
 (load-user-file "config-visual.el")
 (load-user-file "config-elpy.el")
@@ -84,12 +121,20 @@
 
 (load-user-file "config-git.el")
 
+(use-package dockerfile-mode
+  :ensure t
+  :mode "Dockerfile\\'")
 
 
-
-(setq sage-shell:use-prompt-toolkit t)
-
-(require 'sunrise-commander)
+;;(require 'sunrise-commander)
 
 
+(use-package sudo-edit
+  :ensure t
+  :commands (sudo-edit))
 
+(defun sudo-save ()
+  (interactive)
+  (if (not buffer-file-name)
+      (write-file (concat "/sudo:root@localhost:" (ido-read-file-name "File:")))
+    (write-file (concat "/sudo:root@localhost:" buffer-file-name))))
