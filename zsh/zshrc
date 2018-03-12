@@ -156,7 +156,7 @@ zplug "junegunn/fzf", \
 # Supports oh-my-zsh plugins and the like
 #zplug "plugins/git",   from:oh-my-zsh
 
-zplug "plugins/emacs", from:oh-my-zsh
+zplug "plugins/emacs", from:oh-my-zsh, if:"[ ! -n \"$SSH_CLIENT\" ] && [ ! -n \"$SSH_TTY\" ]"
 
 # Also prezto
 #zplug "modules/prompt", from:prezto
