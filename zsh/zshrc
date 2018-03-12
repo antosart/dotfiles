@@ -167,6 +167,8 @@ zplug "junegunn/fzf", \
 
 zplug "plugins/emacs", from:oh-my-zsh, if:"[ ! -n \"$SSH_CLIENT\" ] && [ ! -n \"$SSH_TTY\" ]"
 
+zplug "plugins/golang", from:oh-my-zsh, defer:3
+
 zplug "so-fancy/diff-so-fancy", as:command
 
 # Also prezto
