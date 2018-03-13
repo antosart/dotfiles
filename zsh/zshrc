@@ -128,16 +128,15 @@ alias cdu='cd-gitroot'
 # And accept glob patterns (e.g., brace, wildcard, ...)
 # zplug "Jxck/dotfiles", as:command, use:"bin/{histuniq,color}"
 
-#LP_ENABLE_TEMP=0
-#zplug 'nojhan/liquidprompt'
-
-zplug mafredri/zsh-async, from:github, if:"[ $TERM != linux ]"
-#zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme, if:"[ $TERM == linux ]"
-DEFAULT_USER=
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir dir_writable virtualenv docker_machine vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time ssh root_indicator background_jobs)
-zplug dritter/powerlevel9k, use:powerlevel9k.zsh-theme, from:github, as:theme, at:async_all_the_segments, if:"[ $TERM != linux ] && [ ! -n \"$SSH_CLIENT\" ] && [ ! -n \"$SSH_TTY\" ]"
-#zplug dritter/powerlevel9k, use:powerlevel9k.zsh-theme, from:github, as:theme, at:async_all_the_segments, if:"[ $TERM != linux ]"
+# zplug 'nojhan/liquidprompt'
+zplug mafredri/zsh-async, from:github
+# zplug intelfx/pure, use:pure.zsh, from:github, as:theme
+# zplug therealklanni/purity, use:purity.zsh, from:github, as:theme, hook-build:"sed -i 's/%c/%~/g' purity.zsh"
+DEFAULT_USER=asartori
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir virtualenv vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs)
+POWERLEVEL9K_VIRTUALENV_BACKGROUND='201'
+zplug dritter/powerlevel9k, use:powerlevel9k.zsh-theme, from:github, as:theme, at:async_all_the_segments
 
 # Can manage everything e.g., other person's zshrc
 #zplug "tcnksm/docker-alias", use:zshrc
