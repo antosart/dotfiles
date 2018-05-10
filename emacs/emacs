@@ -5,6 +5,8 @@
 ;;; Code:
 
 
+(load "~/.emacs.d/melpa")
+
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
@@ -29,8 +31,6 @@
   (load-file (expand-file-name file user-init-dir)))
 
 
-(load "~/.emacs.d/melpa")
-
 (eval-when-compile
   (require 'use-package))
 
@@ -40,6 +40,13 @@
   :ensure t
   :init
   (setq system-packages-use-sudo t))
+
+(use-package auto-package-update
+  :ensure t
+  :config
+  (setq auto-package-update-delete-old-versions t)
+  (setq auto-package-update-hide-results t)
+  (auto-package-update-maybe))
 
 ;; (custom-set-variables
 ;;  ;; custom-set-variables was added by Custom.
@@ -76,7 +83,7 @@
      (output-html "xdg-open"))))
  '(package-selected-packages
    (quote
-    (gitignore-mode sudo-edit yas dtrt-indent-mode company-quickhelp use-package markdown-preview-mode markdown-toc vmd-mode go-guru go-dlv yasnippet-snippets which-key json-mode yaml-mode dockerfile-mode go-eldoc company-go go-mode company tide typescript-mode helm-rtags rtags helm-gtags ggtags company-irony flycheck-irony irony  dtrt-indent palette helm-ag sr-speedbar helm-projectile projectile markdown-mode flycheck flycheck-css-colorguard helm-flycheck web-beautify ac-helm ac-html ac-html-bootstrap ac-html-csswatcher ac-js2 tern tern-auto-complete tern-context-coloring sage-shell-mode py-autopep8 parsebib magit helm git-timemachine f evil-visual-mark-mode elpy auctex)))
+    (company-rtags flycheck-rust sudo-edit dockerfile-mode gitignore-mode vmd-mode yaml-mode json-mode markdown-preview-mode yasnippet-snippets which-key company-quickhelp magit dash-functional web-beautify use-package-ensure-system-package tide tern-context-coloring tern-auto-complete sr-speedbar sourcemap sage-shell-mode py-autopep8 parsebib palette memoize markdown-mode indium helm-rtags helm-projectile helm-gtags helm-flycheck helm-company helm-ag git-timemachine ggtags flycheck-rtags flycheck-irony flycheck-css-colorguard evil-visual-mark-mode elpy dtrt-indent company-web company-irony auctex ac-js2 ac-html-csswatcher ac-html-bootstrap ac-html ac-helm))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -91,7 +98,6 @@
 
 (use-package company
   :ensure t
-  :defer t
   :init (global-company-mode)
   :config
   ;; Use Company for completion
@@ -103,21 +109,21 @@
   (setq company-tooltip-limit 20)                      ; bigger popup window
   (setq company-idle-delay .3)                         ; decrease delay before autocompletion popup shows
   (setq company-echo-delay 0)                          ; remove annoying blinking
-  (define-key company-active-map 'company-complete-common nil) ; disable TAB completion
+;  (define-key company-active-map 'company-complete-common nil) ; disable TAB completion
   (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
 
   :diminish company-mode)
 
 (use-package company-quickhelp          ; Documentation popups for Company
   :ensure t
-  :defer t
-  :init (add-hook 'global-company-mode-hook #'company-quickhelp-mode))
+  :hook (global-company-mode-hook . company-quickhelp-mode))
 
 (load-user-file "config-visual.el")
 (load-user-file "config-elpy.el")
 (load-user-file "config-cpp.el")
 (load-user-file "config-javascript.el")
 (load-user-file "config-latex.el")
+(load-user-file "config-rust.el")
 
 (load-user-file "config-git.el")
 
