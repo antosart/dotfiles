@@ -420,5 +420,7 @@ bindsym $mod+Control+Left focus output left
 bindsym $mod+Control+Shift+Right move output right; focus output right
 bindsym $mod+Control+Shift+Left move output left; focus output left
 
+# scrot
+bindsym Print exec scrot -s -e 'mv $f /tmp/ && xdg-open /tmp/$f'
 
 #exec --no-startup-id $HOME/bin/recoll_index_on_ac.sh
