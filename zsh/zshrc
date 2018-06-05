@@ -72,7 +72,8 @@ SAVEHIST=10000
 setopt hist_verify              # show before executing history commands
 setopt inc_append_history       # add commands as they are typed, don't wait until shell exit
 setopt share_history            # share hist between sessions
-
+setopt hist_ignore_dups         # Do not write events ho history that are duplicates of previous events
+setopt hist_expire_dups_first   # when trimming history, lose oldest duplicates first
 
 test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 alias ls='ls --color=auto'
