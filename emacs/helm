@@ -21,4 +21,5 @@
   
   :bind (("M-x" . helm-M-x)
          ("C-c h" . helm-command-prefix)
-         ("C-x C-f" . helm-find-files)))
+         ("C-x C-f" . helm-find-files)
+         ("C-x b" . helm-mini)))
