@@ -11,13 +11,17 @@
                             (local-set-key (kbd "M-.") 'godef-jump)))
   (add-hook 'go-mode-hook 'go-eldoc-setup)
   (add-hook 'go-mode-hook (lambda ()
-                            (setq tab-width 4 standard-indent 4 indent-tabs-mode nil)))
-                                        ; makes sure tabs are not used.
+                            (setq tab-width 4 indent-tabs-mode 1)
+                            (add-hook 'before-save-hook 'gofmt-before-save)))
   (add-hook 'go-mode-hook 'go-guru-hl-identifier-mode))
 
 (use-package go-guru
   :ensure t
   :ensure-system-package (guru . "go get golang.org/x/tools/cmd/guru"))
+
+(use-package go-rename
+  :ensure t
+  :ensure-system-package (guru . "go get golang.org/x/tools/cmd/gorename"))
 
 (use-package go-eldoc
   :ensure t
@@ -32,4 +36,13 @@
   :after (company)
   :config
   (add-to-list 'company-backends 'company-go))
+
+(defun go-test-current-function ()
+  (interactive)
+  (progn
+    (with-current-buffer 
+      (get-buffer-create "go-test-result")
+      (erase-buffer))
+    (start-process-shell-command "go test" "go-test-result" "go" "test" "-run" (shell-quote-argument (go--function-name t)) ".")
+    (display-buffer "go-test-result" t)))
 
