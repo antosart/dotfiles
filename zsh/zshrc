@@ -251,7 +251,7 @@ zplug load --verbose
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 export LESS=' -R '
 
-export GOROOT="/usr/lib/go-1.9"
+export GOROOT="/usr/lib/go-1.10"
 export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
 export PATH="/opt/xmake/bin:$GOBIN:$GOROOT/bin:$HOME/bin:$HOME/.local/bin:$PATH"
