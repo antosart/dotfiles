@@ -114,3 +114,7 @@
 (use-package vmd-mode
   :ensure t
   :commands (vmd-mode))
+
+(use-package toml-mode
+  :ensure t
+  :mode "\\.toml\\'")
