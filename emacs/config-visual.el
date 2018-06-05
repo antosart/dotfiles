@@ -118,3 +118,6 @@
 (use-package toml-mode
   :ensure t
   :mode "\\.toml\\'")
+
+(require 'midnight)
+(setq clean-buffer-list-delay-general 1)
