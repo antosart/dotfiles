@@ -137,6 +137,9 @@ DEFAULT_USER=asartori
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir virtualenv vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs)
 POWERLEVEL9K_VIRTUALENV_BACKGROUND='201'
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='251'
+POWERLEVEL9K_DIR_HOME_FOREGROUND='251'
+POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='251'
 zplug dritter/powerlevel9k, use:powerlevel9k.zsh-theme, from:github, as:theme, at:async_all_the_segments
 
 # Can manage everything e.g., other person's zshrc
