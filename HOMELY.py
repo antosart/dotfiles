@@ -35,3 +35,5 @@ for entry in os.scandir(os.environ['HOME'] + '/dotfiles/bin'):
 
 mkdir('~/.config/dunst')
 symlink('dunstrc', '~/.config/dunst/dunstrc')
+
+symlink('tmux.conf', '~/.tmux.conf')
