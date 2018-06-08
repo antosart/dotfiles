@@ -12,7 +12,11 @@
   (add-hook 'go-mode-hook 'go-eldoc-setup)
   (add-hook 'go-mode-hook (lambda ()
                             (setq tab-width 4 indent-tabs-mode 1)
-                            (add-hook 'before-save-hook 'gofmt-before-save)))
+                            (add-hook 'before-save-hook 'gofmt-before-save)
+                            (add-hook 'before-save-hook
+                                      (lambda ()
+                                        (setq-local comment-auto-fill-only-comments t)
+                                        (auto-fill-mode 1)))))
   (add-hook 'go-mode-hook 'go-guru-hl-identifier-mode))
 
 (use-package go-guru
