@@ -5,6 +5,7 @@
   :ensure t
   :ensure-system-package (godef . "go get github.com/rogpeppe/godef")
   :ensure-system-package (gocode . "go get -u github.com/nsf/gocode")
+  :ensure-system-package (goimports . "go get -u golang.org/x/tools/cmd/goimports")
   :mode "\\.go\\'"
   :config
   (add-hook 'go-mode-hook (lambda ()
@@ -12,6 +13,8 @@
   (add-hook 'go-mode-hook 'go-eldoc-setup)
   (add-hook 'go-mode-hook (lambda ()
                             (setq tab-width 4 indent-tabs-mode 1)
+                            (setq gofmt-command "goimports")
+                            (require 'go-mode-autoloads)
                             (add-hook 'before-save-hook 'gofmt-before-save)
                             (add-hook 'before-save-hook
                                       (lambda ()
