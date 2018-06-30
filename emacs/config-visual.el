@@ -68,8 +68,7 @@
 (use-package helm-ag
   :ensure t
   :commands (helm-ag helm-projectile-ag)
-  :init (setq helm-ag-insert-at-point 'symbol
-              helm-ag-command-option "--path-to-agignore ~/.agignore"))
+  :init (setq helm-ag-insert-at-point 'symbol))
 
 (use-package helm-company
   :ensure t
