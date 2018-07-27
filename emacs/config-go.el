@@ -14,7 +14,6 @@
   (add-hook 'go-mode-hook (lambda ()
                             (setq tab-width 4 indent-tabs-mode 1)
                             (setq gofmt-command "goimports")
-                            (require 'go-mode-autoloads)
                             (add-hook 'before-save-hook 'gofmt-before-save)
                             (add-hook 'before-save-hook
                                       (lambda ()
