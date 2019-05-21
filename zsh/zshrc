@@ -140,7 +140,7 @@ POWERLEVEL9K_VIRTUALENV_BACKGROUND='201'
 POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='251'
 POWERLEVEL9K_DIR_HOME_FOREGROUND='251'
 POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='251'
-zplug dritter/powerlevel9k, use:powerlevel9k.zsh-theme, from:github, as:theme, at:async_all_the_segments
+zplug dritter/powerlevel9k, use:powerlevel9k.zsh-theme, from:github, as:theme, at:async_all_the_segments, if:"[ $TERM != linux ]"
 
 # Can manage everything e.g., other person's zshrc
 #zplug "tcnksm/docker-alias", use:zshrc
