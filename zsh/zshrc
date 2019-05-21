@@ -168,6 +168,9 @@ zplug "junegunn/fzf", \
 # Supports oh-my-zsh plugins and the like
 #zplug "plugins/git",   from:oh-my-zsh
 
+zplug "zsh-users/zsh-autosuggestions"
+export ZSH_AUTOSUGGEST_USE_ASYNC=true
+
 zplug "plugins/emacs", from:oh-my-zsh, if:"[ ! -n \"$SSH_CLIENT\" ] && [ ! -n \"$SSH_TTY\" ]"
 
 zplug "plugins/golang", from:oh-my-zsh, defer:3
