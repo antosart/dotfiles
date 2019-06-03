@@ -120,8 +120,8 @@
 
 (load-user-file "config-visual.el")
 (load-user-file "config-elpy.el")
-(load-user-file "config-cpp.el")
-(load-user-file "config-javascript.el")
+;(load-user-file "config-cpp.el")
+;(load-user-file "config-javascript.el")
 (load-user-file "config-latex.el")
 (load-user-file "config-rust.el")
 (load-user-file "config-idris.el")
