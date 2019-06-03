@@ -23,3 +23,13 @@
   :after rust-mode
   :config
   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+
+(use-package glsl-mode
+  :ensure t
+  :mode "\\.glsl\\'"
+  :mode "\\.vert\\'"
+  :mode "\\.frag\\'"
+  :mode "\\.geom\\'")
+
+(use-package company-glsl
+  :ensure t)
