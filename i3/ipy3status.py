@@ -60,7 +60,7 @@ status.register("battery",
                 battery_ident="BAT1",
                 format="{status}[/{consumption:.1f}W] {percentage:.0f}%[ {remaining:%E%hh:%Mm}]",
                 alert=True,
-                alert_timeout=1,
+#                alert_timeout=1,
                 alert_percentage=5,
                 status={
                     "DIS": "↓",
@@ -72,7 +72,7 @@ status.register("battery",
                 battery_ident="BAT0",
                 format="{status}[/{consumption:.1f}W] {percentage:.0f}%[ {remaining:%E%hh:%Mm}]",
                 alert=True,
-                alert_timeout=1,
+#                alert_timeout=1,
                 alert_percentage=5,
                 status={
                     "DIS": "↓",
@@ -106,13 +106,13 @@ status.register("battery",
 #
 # Note: the network module requires PyPI package netifaces
 status.register("network",
-                interface="eth0",
+                interface="enp0s25",
                 format_up="{v4cidr}",
                 format_down="",)
 
 # Note: requires both netifaces and basiciw (for essid and quality)
 status.register("network",
-                interface="wlan0",
+                interface="wlp3s0",
                 format_up="{essid} {quality:.0f}%",)
 # status.register("net_speed",
 #                 format = "↓{speed_down:.1f}{down_units} ↑{speed_up:.1f}{up_units}",
