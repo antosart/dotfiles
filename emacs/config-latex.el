@@ -8,13 +8,13 @@
                  (doc-view-mode)))"
              TeX-run-function nil t)))
 
-;;  -  REFTEX  -
-(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
-
-(setq reftex-plug-into-AUCTeX t)
-
-
-(setq reftex-label-alist
+(use-package latex
+  :mode
+  ("\\.tex\\'" . latex-mode)
+  :ensure auctex
+  :config
+  (setq reftex-plug-into-AUCTeX t) 
+  (setq reftex-label-alist
         '(("lemma"   ?l "lem:"  "~\\ref{%s}" nil ("lemma"   "lem."))
           ("proposition"   ?p "prop:"  "~\\ref{%s}" nil ("proposition"   "prop."))
           ("example"   ?x "ex:"  "~\\ref{%s}" nil ("example"   "ex."))
@@ -23,19 +23,19 @@
           ("conjecture"   ?j "conj:"  "~\\ref{%s}" nil ("conjecture"   "conj."))
           ("corollary"   ?c "cor:"  "~\\ref{%s}" nil ("corollary"   "cor."))
           ("theorem" ?h "thm:" "~\\ref{%s}" t   ("theorem" "thm."))))
+  (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+  (add-hook 'LaTeX-mode-hook 'turn-off-auto-fill)
+  (add-hook 'LaTeX-mode-hook (lambda () (set-fill-column 60)))
 
-(add-hook 'LaTeX-mode-hook 'turn-off-auto-fill)
-(add-hook 'LaTeX-mode-hook (lambda () (set-fill-column 60)))
-
-(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+  (add-hook 'LaTeX-mode-hook 'flyspell-mode)
 
 ; Per synctex
-(add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode)
+  (add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode)
 
-(add-hook 'LaTeX-mode-hook 'turn-on-visual-line-mode)
-(add-hook 'text-mode-hook 'turn-on-visual-line-mode)
+  (add-hook 'LaTeX-mode-hook 'turn-on-visual-line-mode)
+  (add-hook 'text-mode-hook 'turn-on-visual-line-mode)
 
-(add-hook 'LaTeX-mode-hook
+  (add-hook 'LaTeX-mode-hook
         (lambda ()
           (LaTeX-add-environments
             '("lemma" LaTeX-env-label)
@@ -47,7 +47,14 @@
             '("corollary" LaTeX-env-label)
             '("theorem" LaTeX-env-label))))
 
-(add-hook 'LaTeX-mode-hook '(lambda () (outline-minor-mode 1)))
+  (add-hook 'LaTeX-mode-hook '(lambda () (outline-minor-mode 1)))
+  (add-hook 'LaTeX-mode-hook
+	  (lambda () (set (make-variable-buffer-local 'TeX-electric-math)
+			    (cons "\\(" "\\)"))))
+  (add-hook 'LaTeX-mode-hook
+	  (lambda () (set (make-variable-buffer-local 'LaTeX-electric-left-right-brace)
+			  1)))
+  )
 
 (defun my-replace-search-function (string &optional limit noerror)
   (if (search-forward string limit t)
@@ -233,9 +240,3 @@ sign.  With optional ARG, insert that many dollar signs."
 (add-hook 'plain-TeX-mode-hook
 	  (lambda () (set (make-variable-buffer-local 'TeX-electric-math)
 			  (cons "$" "$"))))
-(add-hook 'LaTeX-mode-hook
-	  (lambda () (set (make-variable-buffer-local 'TeX-electric-math)
-			    (cons "\\(" "\\)"))))
-(add-hook 'LaTeX-mode-hook
-	  (lambda () (set (make-variable-buffer-local 'LaTeX-electric-left-right-brace)
-			    1)))
