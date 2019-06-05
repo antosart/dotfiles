@@ -83,7 +83,7 @@
      (output-html "xdg-open"))))
  '(package-selected-packages
    (quote
-    (racer cargo rust-mode nasm-mode idris-mode company-glsl glsl-mode toml-mode company-rtags flycheck-rust sudo-edit dockerfile-mode gitignore-mode vmd-mode yaml-mode json-mode markdown-preview-mode yasnippet-snippets which-key company-quickhelp magit dash-functional web-beautify use-package-ensure-system-package tide tern-context-coloring tern-auto-complete sr-speedbar sourcemap sage-shell-mode py-autopep8 parsebib palette memoize markdown-mode indium helm-rtags helm-projectile helm-gtags helm-flycheck helm-company helm-ag git-timemachine ggtags flycheck-rtags flycheck-irony flycheck-css-colorguard evil-visual-mark-mode elpy dtrt-indent company-web company-irony auctex ac-js2 ac-html-csswatcher ac-html-bootstrap ac-html ac-helm))))
+    (go-dlv go-eldoc go-rename go-guru racer cargo rust-mode nasm-mode idris-mode company-glsl glsl-mode toml-mode company-rtags flycheck-rust sudo-edit dockerfile-mode gitignore-mode vmd-mode yaml-mode json-mode markdown-preview-mode yasnippet-snippets which-key company-quickhelp magit dash-functional web-beautify use-package-ensure-system-package tide tern-context-coloring tern-auto-complete sr-speedbar sourcemap sage-shell-mode py-autopep8 parsebib palette memoize markdown-mode indium helm-rtags helm-projectile helm-gtags helm-flycheck helm-company helm-ag git-timemachine ggtags flycheck-rtags flycheck-irony flycheck-css-colorguard evil-visual-mark-mode elpy dtrt-indent company-web company-irony auctex ac-js2 ac-html-csswatcher ac-html-bootstrap ac-html ac-helm))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -125,6 +125,7 @@
 (load-user-file "config-latex.el")
 (load-user-file "config-rust.el")
 (load-user-file "config-idris.el")
+(load-user-file "config-go.el")
 
 (load-user-file "config-git.el")
 
