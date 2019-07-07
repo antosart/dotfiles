@@ -1,0 +1,88 @@
+#!/bin/bash
+#
+
+msgId="991049"
+STEP=5
+DIR=$(dirname "$0")
+SINK=$(pactl list sinks |grep -G 'alsa_output.*analog' -B 2 |grep Sink | cut -f 2 -d '#')
+
+source "$DIR/utils.sh"
+
+exec 100>/var/tmp/set-volume-lock.lock || exit 1
+flock -n 100 || exit 1
+ 
+function get_volume {
+    echo $(pactl list | grep -A 9001 "Sink #$SINK" | grep Volume | head -n 1 | awk -F / '{print $2}' | sed 's/[^0-9]*//g')
+}
+
+function get_mute {
+    echo $(pactl list | grep -A 9001 "Sink #$SINK" | grep Mute | head -n 1 | awk '{print $2}')
+}
+
+function volume_up {
+    pactl set-sink-mute $SINK off
+    if [ $(get_volume) -le $(echo 200 - $STEP | bc) ]
+    then
+        pactl set-sink-volume $SINK +$STEP%
+    else
+        pactl set-sink-volume $SINK 200%
+    fi
+}
+
+function volume_down {
+    if [ $(get_volume) -le $STEP ]
+    then
+        pactl set-sink-volume $SINK 0%
+        pactl set-sink-mute $SINK on
+    else
+        pactl set-sink-mute $SINK off
+        pactl set-sink-volume $SINK -$STEP%
+    fi
+}
+
+function mute {
+    pactl set-sink-mute $SINK toggle
+}
+
+case "$1" in
+    "up")
+        volume_up
+        ;;
+    "down")
+        volume_down
+        ;;
+    "mute")
+        mute
+        ;;
+    *)
+        exit 1
+        ;;
+esac
+
+volume=$(get_volume)
+mute=$(get_mute)
+
+if [ "$volume" -le "34" ]
+then
+    icon=audio-volume-low-symbolic
+elif [ "$volume" -le "67" ]
+then
+    icon=audio-volume-medium-symbolic
+elif [ "$volume" -le "101" ]
+then
+    icon=audio-volume-high-symbolic
+else
+    icon=audio-volume-overamplified-symbolic
+fi
+
+if [[ "$mute" == "yes" ]]; then
+    # Show the sound muted notification
+    dunstify -a "changeVolume" -u low -i audio-volume-muted-symbolic -r "$msgId" "Volume muted" 
+else
+    # Show the volume notification
+    progress='['$(getProgressString 30 "<b>+</b>" "-" $(echo $volume / 2 | bc))']'
+    dunstify -a "changeVolume" -u low -i $icon -r "$msgId" \
+             "Volume: ${volume}%" $progress
+fi
+
+canberra-gtk-play -i audio-volume-change -d "changeVolume"

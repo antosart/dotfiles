@@ -1,0 +1,49 @@
+#!/bin/bash
+#
+
+msgId="991048"
+DIR=$(dirname "$0")
+
+source "$DIR/utils.sh"
+
+exec 100>/var/tmp/brightness-lock.lock || exit 1
+flock -n 100 || exit 1
+ 
+function get_brightness {
+    echo $(xbacklight)
+}
+
+function brightness_up {
+    xbacklight -inc 10
+}
+
+function brightness_down {
+    xbacklight -dec 10
+}
+
+case "$1" in
+    "up")
+        brightness_up
+        ;;
+    "down")
+        brightness_down
+        ;;
+    *)
+        exit 1
+        ;;
+esac
+
+brightness=$(printf %.$2f $(get_brightness))
+if [ "$brightness" -le "34" ]
+then
+    icon=display-brightness-low-symbolic
+elif [ "$brightness" -le "67" ]
+then
+     icon=display-brightness-medium-symbolic
+else
+    icon=display-brightness-high-symbolic
+fi
+
+progress='['$(getProgressString 30 "<b>+</b>" "-" $brightness)']'
+dunstify -a "changeBrightness" -u low -i $icon -r "$msgId" \
+             "Brightness: ${brightness}%" $progress

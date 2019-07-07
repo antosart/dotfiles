@@ -1,4 +1,0 @@
-#!/bin/bash
-#
-SINK=`pactl list sinks |grep -G 'alsa_output.*analog' -B 2 |grep Sink | cut -f 2 -d '#'`
-pactl set-sink-mute $SINK toggle

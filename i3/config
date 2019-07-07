@@ -369,14 +369,14 @@ exec --no-startup-id /usr/lib/x86_64-linux-gnu/polkit-gnome-authentication-agent
 
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec $HOME/bin/brightness-set up # increase screen brightness
+bindsym XF86MonBrightnessDown exec $HOME/bin/brightness-set down # decrease screen brightness
 
 bindsym XF86WLAN exec ./block-unblock-wifi
 
-bindsym XF86AudioRaiseVolume exec $HOME/bin/volume-up
-bindsym XF86AudioLowerVolume exec $HOME/bin/volume-down
-bindsym XF86AudioMute exec $HOME/bin/volume-mute
+bindsym XF86AudioRaiseVolume exec $HOME/bin/volume-set up
+bindsym XF86AudioLowerVolume exec $HOME/bin/volume-set down
+bindsym XF86AudioMute exec $HOME/bin/volume-set mute
 
 #Screensaver onoff
 bindsym $mod+Shift+s exec $HOME/bin/commute-screensaver
