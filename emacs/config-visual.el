@@ -120,5 +120,9 @@
   :ensure t
   :mode "\\.toml\\'")
 
+(use-package ace-jump-mode
+  :ensure t
+  :bind ("C-c SPC" . ace-jump-mode))
+
 (require 'midnight)
 (setq clean-buffer-list-delay-general 1)

@@ -1,9 +1,11 @@
 (use-package elpy
   :ensure t
-  :commands elpy-enable
-  :init (with-eval-after-load 'python (elpy-enable))
-  :config 
-  (remove-hook 'elpy-modules 'elpy-module-flymake)
-  ;;(elpy-use-ipython "ipython3")
-  (setq elpy-rpc-python-command "python3"))
-  ;;(setq python-shell-interpreter-args "--simple-prompt --pprint"))
+  :defer t
+  :init
+  (advice-add 'python-mode :before 'elpy-enable)
+  :config
+;  (setq elpy-rpc-python-command "python3")
+;  (setq python-shell-interpreter "python3")
+  (when (load "flycheck" t t)
+    (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+    (add-hook 'elpy-mode-hook 'flycheck-mode)))

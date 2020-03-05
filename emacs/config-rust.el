@@ -8,28 +8,3 @@
 (use-package cargo
   :ensure t
   :hook (rust-mode . cargo-minor-mode))
-
-(use-package racer
-  :ensure t
-  :ensure-system-package (racer . "cargo install racer")
-  :after (company)
-  :hook (rust-mode . racer-mode)
-  :config
-  (add-hook 'racer-mode-hook #'eldoc-mode)
-  (add-hook 'racer-mode-hook #'company-mode))
-
-(use-package flycheck-rust
-  :ensure t
-  :after rust-mode
-  :config
-  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
-
-(use-package glsl-mode
-  :ensure t
-  :mode "\\.glsl\\'"
-  :mode "\\.vert\\'"
-  :mode "\\.frag\\'"
-  :mode "\\.geom\\'")
-
-(use-package company-glsl
-  :ensure t)

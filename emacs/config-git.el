@@ -77,3 +77,8 @@
 
 (use-package gitignore-mode
   :ensure t)
+
+(use-package git-link
+  :ensure t
+  :config
+    (setq git-link-open-in-browser t))

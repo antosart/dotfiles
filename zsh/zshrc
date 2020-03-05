@@ -1,3 +1,5 @@
+# -*- mode: shell-script; -*-
+
 # The following lines were added by compinstall
 
 zstyle :compinstall filename "$HOME/.zshrc"
@@ -89,29 +91,6 @@ autoload -U colors && colors
 PROMPT="%{$fg_bold[green]%}%n@%m %{$fg_bold[blue]%}%1~ %{$reset_color%}%# "
 RPROMPT="[%{$fg_no_bold[yellow]%}%?%{$reset_color%}]"
 
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-
-i3-gui() {
-    # Create tabbed container.
-    i3-msg move up > /dev/null
-    i3-msg split v > /dev/null
-    i3-msg layout tabbed > /dev/null
-    
-    # Run program.
-    $@
-
-    # Remove container.
-#    i3-msg focus parent > /dev/null
-    i3-msg move up > /dev/null
-#    i3-msg move down > /dev/null
-}
-alias evince="i3-gui evince"
-
-#export FZF_DEFAULT_OPTS="--exact"
-#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-
 ###
 ### Start zplug section ###
 ###
@@ -175,6 +154,8 @@ zplug "jplitza/zsh-virsh-autocomplete", use:.
 
 zplug "so-fancy/diff-so-fancy", as:command
 
+zplug "agkozak/zsh-z"
+
 # Also prezto
 #zplug "modules/prompt", from:prezto
 
@@ -227,6 +208,8 @@ zplug "so-fancy/diff-so-fancy", as:command
 # after executing compinit command and sourcing other plugins
 # (If the defer tag is given 2 or above, run after compinit command)
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
+
+export ZSH_HIGHLIGHT_MAXLENGTH=300
 
 # Can manage local plugins
 # zplug "~/.zsh", from:local
