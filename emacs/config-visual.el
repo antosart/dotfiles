@@ -87,10 +87,6 @@
   :ensure t
   :config (global-flycheck-mode))
 
-(use-package yasnippet-snippets
-  :ensure t
-  :config (yas-global-mode))
-
 (use-package markdown-mode
   :ensure t
   :ensure-system-package markdown

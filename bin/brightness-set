@@ -10,15 +10,15 @@ exec 100>/var/tmp/brightness-lock.lock || exit 1
 flock -n 100 || exit 1
  
 function get_brightness {
-    echo $(xbacklight)
+	echo $( echo "$(brightnessctl g)*100/$(brightnessctl m)" | bc )
 }
 
 function brightness_up {
-    xbacklight -inc 10
+    brightnessctl s +10%
 }
 
 function brightness_down {
-    xbacklight -dec 10
+    brightnessctl s 10%-
 }
 
 case "$1" in
