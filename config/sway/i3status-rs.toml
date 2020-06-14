@@ -1,0 +1,81 @@
+icons = "awesome"
+
+[theme]
+name = "solarized-dark"
+[theme.overrides]
+idle_bg = "#222222"
+idle_fg = "#abcdef"
+
+[[block]]
+block = "backlight"
+
+[[block]]
+block = "disk_space"
+path = "/"
+alias = "/"
+info_type = "free"
+unit = "GB"
+interval = 20
+warning = 10.0
+alert = 5.0
+
+[[block]]
+block = "memory"
+display_type = "memory"
+format_mem = "{Mup}%"
+format_swap = "{SUp}%"
+
+[[block]]
+block = "cpu"
+interval = 1
+
+[[block]]
+block = "battery"
+format = "{percentage}%"
+device = "BAT0"
+
+[[block]]
+block = "battery"
+format = "{percentage}%"
+device = "BAT1"
+
+[[block]]
+block = "load"
+interval = 1
+format = "{1m} {5m}"
+
+[[block]]
+block = "net"
+device = "wlp3s0"
+ssid = true
+signal_strength = false
+ip = true
+speed_up = false
+graph_up = false
+interval = 5
+use_bits = false
+hide_missing = true
+hide_inactive = true
+
+[[block]]
+block = "net"
+device = "enp0s25"
+ssid = false
+signal_strength = false
+ip = true
+speed_up = false
+graph_up = false
+interval = 5
+use_bits = false
+hide_missing = true
+hide_inactive = true
+
+[[block]]
+block = "sound"
+driver = "pulseaudio"
+show_volume_when_muted = true
+
+[[block]]
+block = "time"
+interval = 60
+format = "%a %e %b %R"
